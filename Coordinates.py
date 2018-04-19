@@ -13,23 +13,41 @@ class Coordinates:
 
 #Generate random coordinates
 def generate_random_longitude_latitude():
-    latitude = ("{0:.4f}".format(random.uniform(0, 90))) + ' ' + random.choice('NS')
-    longitude = ' ' + ("{0:.4f}".format(random.uniform(0, 180))) + ' ' + random.choice('EW')
-    data = Coordinates(latitude,longitude)
+    latitude = ("{0:.4f}".format(random.uniform(-90, 90)))
+    longitude = ("{0:.4f}".format(random.uniform(-180, 180)))
+    data = Coordinates(float(latitude),float(longitude))
     return data
 
 #Generate a method that parse the coordinates to format "25.344 N, 63.5532 W,"
 def parse_coordinates(data):
-    data.latitude = data.latitude + ','
-    data.longitude = data.longitude + ', '
+
+      #if(x1.find('N')):
+     #   x1 = x1.replace("N", "")
+      #  x1 = float(x1)
+    #else:
+     #   x1 = x1.replace("S", "")
+      #  x1 = float(x1)
+
+    data.latitude = data.latitude + random.choice('NS') + ', '
+    data.longitude = data.longitude + + random.choice('EW') + ', '
     return data
 
 #Great circle distance 
 #This method converts the data to DMS (Ddec) and the DMS to Radians and returns the distance between A and B
 # Haversine formula 2r *arcsin(sqrt(sin^2(diflat/2) + cos(lat1) * cos(lat2) * sin^2(diflong/2)))
 def great_circle_distance(pointA, pointB):
-    print("Two points")
-    
+    R = 6371 # radius of earth
+    x1 = pointA.latitude
+    y1 = pointA.longitude
+    x2 = pointB.latitude
+    y2 = pointB.longitude
+    x1, x2, y1, y2 = map(radians, [x1, x2, y1, y2])
+    dif_lat = x2 - x1
+    dif_lon = y2 - y1
+    x = sqrt(sin(dif_lat)**2 + cos(x1) * cos(x2) * sin(dif_lon/2)**2)
+    print(x)
+    haversine = 2 * R * asin(x)
+    print(str(haversine) + 'Km')
 
 #generate the unit testing
 
