@@ -3,7 +3,7 @@
 #License: MIT
 
 import random
-from math import radians, sqrt, asin, sin, cos, atan2
+from math import radians, sqrt, asin, sin, cos
 
 #Create Data type
 class Location:
@@ -30,13 +30,13 @@ def parse_coordinates(data):
     else:
         data.longitude = str(data.longitude) + ' E,'
     
-    print(data.latitude + ' ' + data.longitude)
+    #print(data.latitude + ' ' + data.longitude)
 
     return data
 
 #Great circle distance 
 #This method converts the data to DMS (Ddec) and the DMS to Radians and returns the distance between A and B
-# Haversine formula 2r *arcsin(sqrt(sin^2(diflat/2) + cos(lat1) * cos(lat2) * sin^2(diflong/2)))
+#Haversine formula 2r *arcsin(sqrt(sin^2(diflat/2) + cos(lat1) * cos(lat2) * sin^2(diflong/2)))
 def great_circle_distance(pointA, pointB):
     R = 6371 # radius of earth in Km
     x1 = pointA.latitude
@@ -44,8 +44,8 @@ def great_circle_distance(pointA, pointB):
     x2 = pointB.latitude
     y2 = pointB.longitude
 
-    parse_coordinates(pointA)
-    parse_coordinates(pointB)
+    #parse_coordinates(pointA)
+    #parse_coordinates(pointB)
 
     y1, x1, y2, x2 = map(radians, [y1, x1, y2, x2])
 
@@ -61,12 +61,10 @@ def great_circle_distance(pointA, pointB):
         z = asin(sqrt(x)) 
         haversine = 2 * R * z
 
-    print(str("{0:.4f}".format(haversine) + ' Km'))
+    #print(str(round(haversine,4)) + ' Km')
 
     return haversine
 
-#generate the unit testing
-
-pointA = generate_random_longitude_latitude()
-pointB = generate_random_longitude_latitude()
-great_circle_distance(pointA,pointB)
+#pointA = generate_random_longitude_latitude()
+#pointB = generate_random_longitude_latitude()
+#great_circle_distance(pointA,pointB)
