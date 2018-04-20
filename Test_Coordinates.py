@@ -1,6 +1,7 @@
 #Author: Diego Ramírez Barba
 #Version: 1.0.0
 #License: MIT
+#Great Circle Distance https://www.movable-type.co.uk/scripts/latlong.html
 
 import unittest
 import Coordinates
@@ -29,7 +30,7 @@ class Test_Coordinates(unittest.TestCase):
         LocationB = Coordinates.Location(13.44,-120.01)
         result = Coordinates.great_circle_distance(LocationA,LocationB)
         #print(str(result))
-        self.assertTrue( 13530 <= result <= 13550) # 13540
+        self.assertTrue( 13530 <= result <= 13550) # 13540 
         LocationA = Coordinates.Location(-73.44,100.01)
         LocationB = Coordinates.Location(-13.44,20.01)
         result = Coordinates.great_circle_distance(LocationA,LocationB)
