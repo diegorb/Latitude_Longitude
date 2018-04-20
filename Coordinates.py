@@ -22,15 +22,15 @@ def generate_random_longitude_latitude():
 def parse_coordinates(data):
     
     if(data.latitude < 0):
-        data.latitude = str(data.latitude) + ' S,'
+        data.latitude = str(abs(data.latitude)) + ' S,'
     else:
-        data.latitude = str(data.latitude) + ' S,'
+        data.latitude = str(data.latitude) + ' N,'
     if(data.longitude < 0):
-        data.longitude = str(data.longitude) + ' W,'
+        data.longitude = str(abs(data.longitude)) + ' W,'
     else:
         data.longitude = str(data.longitude) + ' E,'
     
-    #print(data.latitude + ' ' + data.longitude)
+    print(data.latitude + ' ' + data.longitude)
 
     return data
 
@@ -44,8 +44,8 @@ def great_circle_distance(pointA, pointB):
     x2 = pointB.latitude
     y2 = pointB.longitude
 
-    #parse_coordinates(pointA)
-    #parse_coordinates(pointB)
+    parse_coordinates(pointA)
+    parse_coordinates(pointB)
 
     y1, x1, y2, x2 = map(radians, [y1, x1, y2, x2])
 
@@ -61,10 +61,10 @@ def great_circle_distance(pointA, pointB):
         z = asin(sqrt(x)) 
         haversine = 2 * R * z
 
-    #print(str(round(haversine,4)) + ' Km')
+    print(str(round(haversine,4)) + ' Km')
 
     return haversine
 
-#pointA = generate_random_longitude_latitude()
-#pointB = generate_random_longitude_latitude()
-#great_circle_distance(pointA,pointB)
+pointA = generate_random_longitude_latitude()
+pointB = generate_random_longitude_latitude()
+great_circle_distance(pointA,pointB)
