@@ -3,7 +3,7 @@
 #License: MIT
 
 import random
-from math import radians, sqrt, asin, sin, cos
+from math import radians, sqrt, asin, sin, cos, atan2
 
 #Create Data type
 class Coordinates:
@@ -29,7 +29,7 @@ def parse_coordinates(data):
       #  x1 = float(x1)
 
     data.latitude = data.latitude + random.choice('NS') + ', '
-    data.longitude = data.longitude + + random.choice('EW') + ', '
+    data.longitude = data.longitude + random.choice('EW') + ', '
     return data
 
 #Great circle distance 
@@ -41,13 +41,21 @@ def great_circle_distance(pointA, pointB):
     y1 = pointA.longitude
     x2 = pointB.latitude
     y2 = pointB.longitude
-    x1, x2, y1, y2 = map(radians, [x1, x2, y1, y2])
+
+    print(str(x1) + ' ' + str(y1))
+    print(str(x2) + ' ' + str(y2))
+
+    y1, x1, y2, x2 = map(radians, [y1, x1, y2, x2])
+
     dif_lat = x2 - x1
     dif_lon = y2 - y1
-    x = sqrt(sin(dif_lat)**2 + cos(x1) * cos(x2) * sin(dif_lon/2)**2)
-    print(x)
-    haversine = 2 * R * asin(x)
-    print(str(haversine) + 'Km')
+
+    x = sin(dif_lat/2)**2 + cos(x1) * cos(x2) * sin(dif_lon/2)**2
+    y = asin(sqrt(x)) 
+    haversine = 2 * R * y
+
+    print(str("{0:.4f}".format(haversine) + ' Km'))
+    return haversine
 
 #generate the unit testing
 
