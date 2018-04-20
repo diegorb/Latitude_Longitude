@@ -1,1 +1,2 @@
 # Latitude_Longitude
+--Create a data type Location for dealing with locations on Earth using spherical coordinates (latitude/longitude). Include methods to generate a random location on the surface of the Earth, parse a location in this format “25.344 N, 63.5532 W,” and compute the great-circle distance between two locations. 
